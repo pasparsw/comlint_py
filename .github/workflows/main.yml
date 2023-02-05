@@ -1,0 +1,26 @@
+name: Main
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  Windows-build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Run unit tests
+      run: python -m unittest discover ${{github.workspace}}\test
+
+  Linux-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Run unit tests
+      run: python3 -m unittest discover ${{github.workspace}}\test
