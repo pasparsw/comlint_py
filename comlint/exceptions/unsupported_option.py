@@ -1,0 +1,2 @@
+class UnsupportedOption(Exception):
+    pass

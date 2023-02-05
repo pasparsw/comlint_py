@@ -1,0 +1,2 @@
+class ForbiddenOptionValue(Exception):
+    pass

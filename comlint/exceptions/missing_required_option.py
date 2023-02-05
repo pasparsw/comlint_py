@@ -1,0 +1,2 @@
+class MissingRequiredOption(Exception):
+    pass

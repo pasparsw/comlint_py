@@ -1,0 +1,2 @@
+class UnsupportedFlag(Exception):
+    pass

@@ -1,0 +1,2 @@
+class ForbiddenFlag(Exception):
+    pass

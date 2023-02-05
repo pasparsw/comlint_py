@@ -1,0 +1,2 @@
+class MissingOptionValue(Exception):
+    pass

@@ -1,0 +1,2 @@
+class MissingCommandHandler(Exception):
+    pass
