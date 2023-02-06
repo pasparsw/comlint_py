@@ -24,6 +24,7 @@ from comlint.types import CommandValues, ANY, OptionNames, NONE, FlagNames, Opti
     FlagName, CommandName, OptionsMap, FlagsMap, CommandValue
 
 DEFAULT_OPTION_VALUE: OptionValue = ''
+HELP_COMMAND_INDICATOR: str = 'help'
 
 
 class CommandLineInterface:
@@ -100,7 +101,7 @@ class CommandLineInterface:
     def parse(self) -> ParsedCommand:
         if InterfaceHelper.is_help_required(self.__argv, self.__allow_no_arguments):
             print(f'{InterfaceHelper.get_help(self.__program_name, self.__description, self.__interface_commands, self.__interface_options, self.__interface_flags)}')
-            return ParsedCommand('help', [], {}, {})
+            return ParsedCommand(HELP_COMMAND_INDICATOR, [], {}, {})
 
         command_name: CommandName = ''
         command_values: CommandValues = []
@@ -143,13 +144,15 @@ class CommandLineInterface:
     def run(self) -> None:
         parsed_command: ParsedCommand = self.parse()
 
-        if self.__interface_commands[parsed_command.name].command_handler:
-            self.__interface_commands[parsed_command.name].command_handler.run(parsed_command.values,
-                                                                               parsed_command.options,
-                                                                               parsed_command.flags)
-        else:
+        if parsed_command.name == HELP_COMMAND_INDICATOR:
+            return
+        if not self.__interface_commands[parsed_command.name].command_handler:
             raise MissingCommandHandler(f'Unable to run command handler for {parsed_command.name} command! No command '
                                         f'handler has been added for this command.')
+
+        self.__interface_commands[parsed_command.name].command_handler.run(parsed_command.values,
+                                                                           parsed_command.options,
+                                                                           parsed_command.flags)
 
     def __get_command_line_element_type(self, element: str, element_position_index: int) -> CommandLineElementType:
         if InterfaceValidator.is_command_name_valid(element) and element_position_index == 1:

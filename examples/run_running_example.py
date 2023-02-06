@@ -1,5 +1,6 @@
 import sys
 import os
+import traceback
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from comlint.command_line_interface import CommandLineInterface, CommandHandlerInterface, CommandValues, OptionsMap, \
     FlagsMap
@@ -94,4 +95,4 @@ if __name__ == '__main__':
         # run command provided by the user from the command line
         cli.run()
     except Exception as e:
-        print(e)
+        print(f'{traceback.format_exc()}')

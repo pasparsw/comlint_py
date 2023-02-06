@@ -1,5 +1,6 @@
 import sys
 import os
+import traceback
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from comlint.command_line_interface import CommandLineInterface, ParsedCommand
 
@@ -93,4 +94,4 @@ if __name__ == '__main__':
         if parsed_command.name == 'submodule':
             run_submodule_command(parsed_command)
     except Exception as e:
-        print(e)
+        print(f'{traceback.format_exc()}')
