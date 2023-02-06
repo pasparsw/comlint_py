@@ -3,9 +3,15 @@ from typing import List
 
 from comlint.command_handler_interface import CommandHandlerInterface
 from comlint.command_line_interface import CommandLineInterface
+from comlint.exceptions.duplicated_command import DuplicatedCommand
+from comlint.exceptions.duplicated_flag import DuplicatedFlag
+from comlint.exceptions.duplicated_option import DuplicatedOption
 from comlint.exceptions.forbidden_flag import ForbiddenFlag
 from comlint.exceptions.forbidden_option import ForbiddenOption
 from comlint.exceptions.forbidden_option_value import ForbiddenOptionValue
+from comlint.exceptions.invalid_command_name import InvalidCommandName
+from comlint.exceptions.invalid_flag_name import InvalidFlagName
+from comlint.exceptions.invalid_option_name import InvalidOptionName
 from comlint.exceptions.missing_command_handler import MissingCommandHandler
 from comlint.exceptions.missing_command_value import MissingCommandValue
 from comlint.exceptions.missing_option_value import MissingOptionValue
@@ -209,3 +215,51 @@ class TestCommandLineInterfaceNegativeCases(unittest.TestCase):
 
         with self.assertRaises(MissingCommandHandler):
             cli.run()
+
+    def test_add_command_throws_invalid_command_name(self):
+        argv: List[str] = ['program.exe']
+        cli: CommandLineInterface = CommandLineInterface(argv)
+
+        with self.assertRaises(InvalidCommandName):
+            cli.add_command('-command', 'Some command')
+
+    def test_add_command_throws_duplicated_command(self):
+        argv: List[str] = ['program.exe']
+        cli: CommandLineInterface = CommandLineInterface(argv)
+
+        cli.add_command('command', 'Some command')
+
+        with self.assertRaises(DuplicatedCommand):
+            cli.add_command('command', 'Some command')
+
+    def test_add_option_throws_invalid_option_name(self):
+        argv: List[str] = ['program.exe']
+        cli: CommandLineInterface = CommandLineInterface(argv)
+
+        with self.assertRaises(InvalidOptionName):
+            cli.add_option('option', 'Some option')
+
+    def test_add_option_throws_duplicated_option(self):
+        argv: List[str] = ['program.exe']
+        cli: CommandLineInterface = CommandLineInterface(argv)
+
+        cli.add_option('-option', 'Some option')
+
+        with self.assertRaises(DuplicatedOption):
+            cli.add_option('-option', 'Some option')
+
+    def test_add_flag_throws_invalid_flag_name(self):
+        argv: List[str] = ['program.exe']
+        cli: CommandLineInterface = CommandLineInterface(argv)
+
+        with self.assertRaises(InvalidFlagName):
+            cli.add_flag('flag', 'Some flag')
+
+    def test_add_flag_throws_duplicated_flag(self):
+        argv: List[str] = ['program.exe']
+        cli: CommandLineInterface = CommandLineInterface(argv)
+
+        cli.add_flag('--flag', 'Some flag')
+
+        with self.assertRaises(DuplicatedFlag):
+            cli.add_flag('--flag', 'Some flag')

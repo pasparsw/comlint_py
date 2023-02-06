@@ -1,0 +1,2 @@
+class DuplicatedCommand(Exception):
+    pass

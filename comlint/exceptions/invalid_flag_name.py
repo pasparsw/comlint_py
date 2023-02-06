@@ -1,0 +1,2 @@
+class InvalidFlagName(Exception):
+    pass

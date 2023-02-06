@@ -1,0 +1,2 @@
+class InvalidCommandName(Exception):
+    pass
