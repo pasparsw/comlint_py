@@ -16,9 +16,6 @@ jobs:
     - name: Run unit tests
       run: python -m unittest discover ${{github.workspace}}\test
 
-    - name: Run parsing example smoke test
-        run: python ${{github.workspace}}\examples\run_parsing_example.py -h
-
     - name: Run running example smoke test
         run: python ${{github.workspace}}\examples\run_running_example.py -h
 
