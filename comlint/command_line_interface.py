@@ -3,10 +3,16 @@ import comlint.utils as utils
 from comlint.command_handler_interface import CommandHandlerInterface
 from comlint.command_line_element_type import CommandLineElementType
 from comlint.command_properties import CommandProperties
+from comlint.exceptions.duplicated_command import DuplicatedCommand
+from comlint.exceptions.duplicated_flag import DuplicatedFlag
+from comlint.exceptions.duplicated_option import DuplicatedOption
 from comlint.exceptions.forbidden_flag import ForbiddenFlag
 from comlint.exceptions.forbidden_option import ForbiddenOption
 from comlint.exceptions.forbidden_option_value import ForbiddenOptionValue
+from comlint.exceptions.invalid_command_name import InvalidCommandName
 from comlint.exceptions.invalid_command_position import InvalidCommandPosition
+from comlint.exceptions.invalid_flag_name import InvalidFlagName
+from comlint.exceptions.invalid_option_name import InvalidOptionName
 from comlint.exceptions.missing_command_handler import MissingCommandHandler
 from comlint.exceptions.missing_command_value import MissingCommandValue
 from comlint.exceptions.missing_option_value import MissingOptionValue
@@ -68,23 +74,19 @@ class CommandLineInterface:
     def add_command(self, command_name: str, description: str, num_of_required_values: int = 0,
                     allowed_values: CommandValues = ANY, allowed_options: OptionNames = NONE,
                     allowed_flags: FlagNames = NONE, required_options: OptionNames = NONE) -> None:
-        # TODO: make these separate exceptions
         if not InterfaceValidator.is_command_name_valid(command_name):
-            print(f'Unable to add command {command_name} - command name invalid')
-            return
+            raise InvalidCommandName(f'Unable to add {command_name} command! Name of the command is invalid.')
         if command_name in self.__interface_commands.keys():
-            print(f'Unable to add command {command_name} - command with the same name already added')
-            return
+            raise DuplicatedCommand(f'Unable to add {command_name} command! Command with the same name is already added.')
 
         self.__interface_commands[command_name] = CommandProperties(allowed_values, allowed_options, allowed_flags,
                                                                     description, num_of_required_values, required_options)
 
     def add_option(self, option_name: OptionName, description: str, allowed_values: OptionValues = ANY) -> None:
-        # TODO: make these separate exceptions
         if not InterfaceValidator.is_option_name_valid(option_name):
-            print(f'Unable to add option {option_name} - option name invalid')
+            raise InvalidOptionName(f'Unable to add {option_name} option! Name of the option is invalid.')
         if option_name in self.__interface_options.keys():
-            print(f'Unable to add option {option_name} - option with the same name already added')
+            raise DuplicatedOption(f'Unable to add {option_name} option! Option with the same name is already added.')
 
         # TODO: implement handling of user defined default option value
         self.__interface_options[option_name] = OptionProperties(description, allowed_values, DEFAULT_OPTION_VALUE)
@@ -92,9 +94,9 @@ class CommandLineInterface:
     def add_flag(self, flag_name: FlagName, description: str) -> None:
         # TODO: make these separate exceptions
         if not InterfaceValidator.is_flag_name_valid(flag_name):
-            print(f'Unable to add flag {flag_name} - flag name invalid')
+            raise InvalidFlagName(f'Unable to add {flag_name} flag! Name of the flag is invalid.')
         if flag_name in self.__interface_flags.keys():
-            print(f'Unable to add flag {flag_name} - flag with the same name already added')
+            raise DuplicatedFlag(f'Unable to add {flag_name} flag! Flag with the same name is already added.')
 
         self.__interface_flags[flag_name] = FlagProperties(description)
 
