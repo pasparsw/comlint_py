@@ -1,2 +1,4 @@
 venv
 .idea/
+comlint/__pycache__/
+comlint/exceptions/__pycache__/
