@@ -16,6 +16,12 @@ jobs:
     - name: Run unit tests
       run: python -m unittest discover ${{github.workspace}}\test
 
+    - name: Run smoke test for parsing example
+      run: python ${{github.workspace}}\examples\run_parsing_example.py
+
+    - name: Run smoke test for running example
+      run: python ${{github.workspace}}\examples\run_running_example.py
+
   Linux-build:
     runs-on: ubuntu-latest
 
@@ -24,3 +30,9 @@ jobs:
 
     - name: Run unit tests
       run: python3 -m unittest discover ${{github.workspace}}/test
+
+    - name: Run smoke test for parsing example
+      run: python3 ${{github.workspace}}/examples/run_parsing_example.py
+
+    - name: Run smoke test for running example
+      run: python3 ${{github.workspace}}/examples/run_running_example.py
