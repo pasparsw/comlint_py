@@ -1,2 +1,1 @@
-# comlint_py
-Command line arguments parser for Python command line applications.
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/pawbar94/comlint_py/linux-tests.yml?label=Linux%20tests) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/pawbar94/comlint_py/windows-tests.yml?label=Windows%20tests) [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/) ![GitHub all releases](https://img.shields.io/github/downloads/pawbar94/comlint_py/total)
