@@ -1,4 +1,4 @@
-name: Main
+name: Linux tests
 
 on:
   push:
@@ -7,22 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  Windows-build:
-    runs-on: windows-latest
-
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Run unit tests
-      run: python -m unittest discover ${{github.workspace}}\test
-
-    - name: Run smoke test for parsing example
-      run: python ${{github.workspace}}\examples\run_parsing_example.py
-
-    - name: Run smoke test for running example
-      run: python ${{github.workspace}}\examples\run_running_example.py
-
-  Linux-build:
+  Test:
     runs-on: ubuntu-latest
 
     steps:
