@@ -1,6 +1,6 @@
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/pawbar94/comlint_py/linux-tests.yml?label=Linux%20tests) ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/pawbar94/comlint_py/windows-tests.yml?label=Windows%20tests) [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-# Comlint for C++
+# Comlint for Python
 Table of contents:
 
 [What is it?](#what_is_it)<br>
