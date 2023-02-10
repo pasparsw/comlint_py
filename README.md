@@ -16,7 +16,7 @@ Table of contents:
 
 ## <a name="what_is_it"></a>What is it?
 
-Comlint is a framework which allows user to create a command line interface (CLI) for Python command line applications in an easy way. It works both on Windows and Linux. If your application is written in C++, check out [Comlint for C++](https://github.com/pawbar94/comlint_Python).
+Comlint is a framework which allows user to create a command line interface (CLI) for Python command line applications in an easy way. It works both on Windows and Linux. If your application is written in C++, check out [Comlint for C++](https://github.com/pawbar94/comlint_cpp).
 
 ## <a name="conventions_used"></a>Conventions used
 
