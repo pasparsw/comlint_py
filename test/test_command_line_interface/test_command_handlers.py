@@ -4,6 +4,7 @@ from typing import List
 
 from comlint.command_handler_interface import CommandHandlerInterface
 from comlint.command_line_interface import CommandLineInterface
+from comlint.parsed_command import ParsedCommand
 from comlint.types import CommandValues, OptionsMap, FlagsMap, ANY
 
 
@@ -51,6 +52,8 @@ class TestCommandLineInterfaceCommandHandlers(unittest.TestCase):
         expected_flags: FlagsMap = {'--flag_1': True,
                                     '--flag_2': True,
                                     '--flag_3': False}
+        expected_parsed_command: ParsedCommand = ParsedCommand('command_2', expected_command_values, expected_options,
+                                                               expected_flags)
 
         cli.add_command('command_1', 'Some command 1', allowed_options=['-option_1', '-option_2'],
                         allowed_flags=['--flag_1', '--flag_2', '--flag_3'])
