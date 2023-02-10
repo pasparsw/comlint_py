@@ -1,8 +1,8 @@
 import sys
 import os
 import traceback
-from comlint.parsed_command import ParsedCommand
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+from comlint.parsed_command import ParsedCommand
 from comlint.command_line_interface import CommandLineInterface, CommandHandlerInterface
 
 
