@@ -219,5 +219,5 @@ For more advanced example of automatic command running, check _examples/running_
 
 
 
-[![Stargazers repo roster for @pawbar94/comlint_cpp](https://reporoster.com/stars/pawbar94/comlint_cpp)](https://github.com/pawbar94/comlint_cpp/stargazers)
-[![Forkers repo roster for @pawbar94/comlint_cpp](https://reporoster.com/forks/pawbar94/comlint_cpp)](https://github.com/pawbar94/comlint_cpp/network/members)
+[![Stargazers repo roster for @pawbar94/comlint_py](https://reporoster.com/stars/pawbar94/comlint_py)](https://github.com/pawbar94/comlint_py/stargazers)
+[![Forkers repo roster for @pawbar94/comlint_py](https://reporoster.com/forks/pawbar94/comlint_py)](https://github.com/pawbar94/comlint_py/network/members)
