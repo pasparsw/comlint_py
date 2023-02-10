@@ -1,49 +1,49 @@
 import sys
 import os
 import traceback
+from comlint.parsed_command import ParsedCommand
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from comlint.command_line_interface import CommandLineInterface, CommandHandlerInterface, CommandValues, OptionsMap, \
-    FlagsMap
+from comlint.command_line_interface import CommandLineInterface, CommandHandlerInterface
 
 
 class AddCommandHandler(CommandHandlerInterface):
-    def run(self, values: CommandValues, options: OptionsMap, flags: FlagsMap) -> None:
-        print(f'Running add command for file {values[0]}')
+    def run(self, command: ParsedCommand) -> None:
+        print(f'Running add command for file {command.values[0]}')
 
-        if flags['--verbose']:
+        if command.flags['--verbose']:
             print(f'Being verbose')
-        if flags['--interactive']:
+        if command.flags['--interactive']:
             print(f'Adding interactively')
 
 
 class CommitCommandHandler(CommandHandlerInterface):
-    def run(self, values: CommandValues, options: OptionsMap, flags: FlagsMap) -> None:
+    def run(self, command: ParsedCommand) -> None:
         print(f'Running commit command!')
 
-        if '-m' in options.keys():
-            print(f'Adding message {options["-m"]}')
-        if '-c' in options.keys():
-            print(f'Re-editing commit {options["-c"]}')
-        if flags['--amend']:
+        if command.is_option_used("-m"):
+            print(f'Adding message {command.options["-m"]}')
+        if command.is_option_used("-c"):
+            print(f'Re-editing commit {command.options["-c"]}')
+        if command.flags['--amend']:
             print(f'Amending commit')
-        if flags['--verbose']:
+        if command.flags['--verbose']:
             print(f'Being verbose')
 
 
 class MergeCommandHandler(CommandHandlerInterface):
-    def run(self, values: CommandValues, options: OptionsMap, flags: FlagsMap) -> None:
-        print(f'Running merge command for branches {values[0]} and {values[1]} using strategy '
-              f'{options["-s"]}')
+    def run(self, command: ParsedCommand) -> None:
+        print(f'Running merge command for branches {command.values[0]} and {command.values[1]} using strategy '
+              f'{command.options["-s"]}')
 
-        if '-m' in options.keys():
-            print(f'Adding message {options["-m"]}')
+        if command.is_option_used("-m"):
+            print(f'Adding message {command.options["-m"]}')
 
 
 class SubmoduleCommandHandler(CommandHandlerInterface):
-    def run(self, values: CommandValues, options: OptionsMap, flags: FlagsMap) -> None:
-        print(f'Running submodule {values[0]} command!')
+    def run(self, command: ParsedCommand) -> None:
+        print(f'Running submodule {command.values[0]} command!')
 
-        if flags['--verbose']:
+        if command.flags['--verbose']:
             print(f'Being verbose')
 
 
