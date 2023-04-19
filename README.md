@@ -45,7 +45,7 @@ The basis for all actions is creation of instance of Comlint command line interf
 
 ```Python
 import sys
-from comlint.command_line_interface import CommandLineInterface
+from comlint_py import CommandLineInterface
 
 if __name__ == '__main__':
     cli = CommandLineInterface(sys.argv)
