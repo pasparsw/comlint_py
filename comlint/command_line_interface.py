@@ -92,7 +92,6 @@ class CommandLineInterface:
         self.__interface_options[option_name] = OptionProperties(description, allowed_values, DEFAULT_OPTION_VALUE)
 
     def add_flag(self, flag_name: FlagName, description: str) -> None:
-        # TODO: make these separate exceptions
         if not InterfaceValidator.is_flag_name_valid(flag_name):
             raise InvalidFlagName(f'Unable to add {flag_name} flag! Name of the flag is invalid.')
         if flag_name in self.__interface_flags.keys():
@@ -152,9 +151,7 @@ class CommandLineInterface:
             raise MissingCommandHandler(f'Unable to run command handler for {parsed_command.name} command! No command '
                                         f'handler has been added for this command.')
 
-        self.__interface_commands[parsed_command.name].command_handler.run(parsed_command.values,
-                                                                           parsed_command.options,
-                                                                           parsed_command.flags)
+        self.__interface_commands[parsed_command.name].command_handler.run(parsed_command)
 
     def __get_command_line_element_type(self, element: str, element_position_index: int) -> CommandLineElementType:
         if InterfaceValidator.is_command_name_valid(element) and element_position_index == 1:

@@ -75,4 +75,4 @@ class TestCommandLineInterfaceCommandHandlers(unittest.TestCase):
 
         cli.run()
 
-        command_2_handler.run.assert_called_with(expected_command_values, expected_options, expected_flags)
+        command_2_handler.run.assert_called_with(expected_parsed_command)
