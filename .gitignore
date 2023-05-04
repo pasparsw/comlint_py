@@ -1,5 +1,6 @@
 venv
 .idea/
+__pycache__/
 comlint/__pycache__/
 comlint/exceptions/__pycache__/
 test/__pycache__/
